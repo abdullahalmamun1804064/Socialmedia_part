@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+ {% if request.user.is_authenticated %}
+    <div>
+        <h3 class="alert alert-danger">{{usr}}</h3>
+        <h5>Wellcome our mbook family</h5>
+    
+    </div>
+ {% else %}
+ <div> Please Login...</div>
+ {% endif %}
+{% endblock content %}

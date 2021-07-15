@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+
+
+  <div class="row shadow">
+    <div class="col-4">
+      <img src="{{myprofile.avatar.url}}" alt="" height="300px"> <br>
+      <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Update
+      </button>
+    </div>
+    <div class="col-6 offset-1">
+      <div class="my-5">
+         <div class="row border">
+           <div class="col">
+               <p class="p-2"> <b>Username </b> </p>
+           </div>
+           <div class="col">
+                <p>{{request.user}}</p> 
+           </div>
+          </div> 
+
+          <div class="row border_t">
+            <div class="col">
+                <p class="p-2"> <b> First Name </b> </p>
+            </div>
+            <div class="col">
+                 <p>{{myprofile.frist_name}}</p> 
+            </div>
+           </div> 
+
+           
+          <div class="row border_t">
+            <div class="col">
+                <p class="p-2"> <b>Last Name </b> </p>
+            </div>
+            <div class="col">
+                 <p>{{myprofile.last_name}}</p> 
+            </div>
+           </div> 
+
+           
+          <div class="row border_t">
+            <div class="col">
+                <p class="p-2"> <b> Biodata </b> </p>
+            </div>
+            <div class="col">
+                 <p>{{myprofile.bio}}</p> 
+            </div>
+           </div> 
+
+           
+          <div class="row border_t">
+            <div class="col">
+                <p class="p-2"> <b> Number of Friends </b> </p>
+            </div>
+            <div class="col">
+                 <p>{{myprofile.get_all_friends_count}}</p> 
+            </div>
+           </div> 
+
+
+           <div class="row border_t">
+              <div class="col">
+                  <p class="p-2"> <b> List of Friends </b> </p>
+              </div>
+              <div class="col">
+                  {% for f in myprofile.get_all_friends %}
+                  <p>{{f}}</p> 
+                  {% endfor %}
+              </div>
+           </div> 
+
+
+           <div class="row border_t">
+              <div class="col">
+                  <p class="p-2"> <b> Number of post </b> </p>
+              </div>
+              <div class="col">
+                  <p>{{myprofile.get_post_number}}</p> 
+              </div>
+           </div> 
+
+
+           <div class="row border_t">
+              <div class="col">
+                  <p class="p-2"> <b>All posts </b> </p>
+              </div>
+              <div class="col">
+                   {% for p in myprofile.get_all_author_post %}
+                    <p>{{p}}</p> 
+                   {% endfor %}
+              </div>
+          </div> 
+
+          
+        <div class="row border_t">
+            <div class="col">
+                <p class="p-2"> <b>Number of Like given </b> </p>
+            </div>
+            <div class="col">
+                <p>{{myprofile.get_like_given_no}}</p> 
+            </div>
+        </div> 
+      
+                  
+      <div class="row border_t">
+          <div class="col">
+              <p class="p-2"> <b>Number of Like Recieved </b> </p>
+          </div>
+          <div class="col">
+              <p>{{myprofile.get_like_recieved_no}}</p> 
+          </div>
+      </div> 
+
+      </div>
+      
+    </div>
+  
+</>
+
+
+
+<!----------update profile-------------->
+{% include 'profiles/update_profiles.html' %}
+
+{% endblock content %}

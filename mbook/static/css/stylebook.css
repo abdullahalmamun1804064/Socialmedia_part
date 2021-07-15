@@ -1,0 +1,10 @@
+.border{
+    border: 1px solid #ddd;
+}
+.border_t{
+    border: 1px solid #ddd;
+    border-top: none;
+}
+.post{
+   background-color:rgb(231, 231, 231) !important;
+}

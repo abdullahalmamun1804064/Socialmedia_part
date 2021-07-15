@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+  Post
+{% endblock title %}
+
+{% block content %}
+    <div class="row ">
+    
+            <div class="col-7  offset-1">
+                 {% for obj in  post_page  %}   
+                   <div class=" post border_t p-3 mb-4 ">
+                       
+                       <p class=" post order_t ">{{obj}}</p>  <hr>
+                       <form action="{% url 'like_unlike' %}" method="POST">
+                           {% csrf_token %}
+                           <input type="hidden" name="post_id" value={{obj.id}}>
+                           <button type="submit"  class="btn btn-sm btn-primary"   name="" id="">
+                            
+                            {% if  myprofile not in obj.liked.all %}
+                              <i class="fas fa-thumbs-up"></i>Like
+                            {% else %}
+                              <i class="fas fa-thumbs-down"></i>Unlike
+                            {% endif %}
+                        
+                            <span class="badge badge-info"> {{ obj.num_like }}</span>
+                           </button> 
+
+
+                         
+                          
+                       </form>
+
+                   </div>
+
+                 {% endfor %}
+            </div>
+      
+
+        <div class="col offset-1">
+            from {{ myprofile}}
+        </div>
+
+    </div>
+
+
+
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center ">
+
+    {% if post_page.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a> </li>
+
+    <li class="page-item"> <a class="page-link" href="?page={{ post_page.previous_page_number }}"> Previous</a></li>
+    {% endif %}
+
+    
+    {% for x in pg_nums %}
+  
+    <li class="page-item"></li><a class="page-link" href="?page={{ forloop.counter }}">{{forloop.counter}}</a></li>
+    {% endfor %}
+
+    {% if post_page.has_next %}
+
+    <li class="page-item"></li><a class="page-link" href="?page={{ post_page.next_page_number }}">Next</a></li>
+    <li class="page-item"></li><a class="page-link" href="?page={{post_page.paginator.num_pages}}"> Last &laquo </a></li>
+
+    {% endif %}
+
+  </ul>
+</nav>
+
+    
+    <br><br>
+{% endblock content %}
